@@ -1111,8 +1111,8 @@
     #define CALIBRATION_MEASURE_LEFT
     #define CALIBRATION_MEASURE_BACK
   #elif ENABLED(Workhorse)
-    #define CALIBRATION_OBJECT_CENTER     { 266, -17.0,-2.0 } // mm True location is -22 in y but object size is accounting for location change
-    #define CALIBRATION_OBJECT_DIMENSIONS { 10.0, 4.0,  10.0 } // mm 
+    #define CALIBRATION_OBJECT_CENTER     { 266, -16.0,-2.0 } // mm True location is -22 in y but object size is accounting for location change
+    #define CALIBRATION_OBJECT_DIMENSIONS { 10.0, 4.0,  10.0 } // mm
 
     // Comment out any sides which are unreachable by the probe. For best
     // auto-calibration results, all sides must be reachable.
