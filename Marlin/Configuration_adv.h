@@ -3014,12 +3014,12 @@
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
     #if ANY(TAZPro, TAZProXT)
-      #if ANY(LULZBOT_UNIVERSAL_TOOLHEAD, LULZBOT_GALAXY_SERIES)
+      #if ANY(TOOLHEAD_Legacy_Universal, LULZBOT_Galaxy_Series)
         #define X_STALL_SENSITIVITY  3
         #define Y_STALL_SENSITIVITY  5
-      #else      
+      #else
         #define X_STALL_SENSITIVITY  5
-        #define Y_STALL_SENSITIVITY  5 
+        #define Y_STALL_SENSITIVITY  5
       #endif
     #elif ENABLED(MiniV2)
       #define X_STALL_SENSITIVITY  3
@@ -3809,7 +3809,7 @@
  */
 
 // Custom Menu: Main Menu
-#if ANY(LULZBOT_UNIVERSAL_TOOLHEAD, LULZBOT_GALAXY_SERIES)
+#if ANY(TOOLHEAD_Legacy_Universal, LULZBOT_Galaxy_Series)
   #define CUSTOM_MENU_MAIN
 #endif
  #define CUSTOM_MENU_MAIN_TITLE "Tool Heads (TH)"
@@ -3838,7 +3838,7 @@
   #endif
 
 
-  #if defined(LULZBOT_GALAXY_SERIES)
+  #if defined(LULZBOT_Galaxy_Series)
     #if DISABLED(Workhorse)
       #define MAIN_MENU_ITEM_1_DESC "Park for TH SWAP"
       #define MAIN_MENU_ITEM_1_GCODE "G28O\nG0X80Z150"
@@ -3865,7 +3865,7 @@
       #define MAIN_MENU_ITEM_4_GCODE "M92E439\nM301P" charAST285_DEFAULT_Kp "I" charAST285_DEFAULT_Ki "D" charAST285_DEFAULT_Kd "\nM907E" E_CURRENT_LGX285 "\nM500\nM117 Asteroid - 2.85"
     #endif
 
-  #elif defined(TOOLHEAD_Universal_ToolHead)
+  #elif defined(TOOLHEAD_Legacy_Universal)
 
     #if ANY(Sidekick_289, Sidekick_747)
       #define MAIN_MENU_ITEM_1_DESC "SK175|0.50mm|BRASS"

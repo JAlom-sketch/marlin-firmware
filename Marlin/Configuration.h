@@ -10,8 +10,8 @@
 //#define TazDualZ
 #define LULZBOT_FILAMENT_RUNOUT
 /************** Uncomment a Tool Head Option From Below *********************/
-//#define LULZBOT_UNIVERSAL_TOOLHEAD
-#define LULZBOT_GALAXY_SERIES
+#define TOOLHEAD_Legacy_Universal
+//#define LULZBOT_Galaxy_Series
 //#define TOOLHEAD_SL_SE_HE
 //#define TOOLHEAD_HS_HSPLUS
 //#define TOOLHEAD_H175
@@ -375,7 +375,7 @@
 #endif /* TOOLHEAD_Yellowfin_DualExtruderV3 */
 
 /******************************** UNIVERSAL TOOLHEADS *************************/
-#if defined(LULZBOT_UNIVERSAL_TOOLHEAD) || ANY(TOOLHEAD_SK285,TOOLHEAD_SK175,TOOLHEAD_M175,TOOLHEAD_H175,TOOLHEAD_SL_SE_HE, TOOLHEAD_HS_HSPLUS)
+#if defined(TOOLHEAD_Legacy_Universal) || ANY(TOOLHEAD_SK285,TOOLHEAD_SK175,TOOLHEAD_M175,TOOLHEAD_H175,TOOLHEAD_SL_SE_HE, TOOLHEAD_HS_HSPLUS)
   #define LULZBOT_UNIVERSAL_MOUNT
   #define LULZBOT_EXTRUDERS                  1
   #define LULZBOT_M115_EXTRUDER_TYPE       "Legacy-Series"
@@ -410,7 +410,7 @@
   #undef LULZBOT_M115_EXTRUDER_TYPE
   #define LULZBOT_M115_EXTRUDER_TYPE       "SK285"
 #endif
-#if defined(LULZBOT_GALAXY_SERIES) 
+#if defined(LULZBOT_Galaxy_Series)
   #define LULZBOT_UNIVERSAL_MOUNT
   #define LULZBOT_EXTRUDERS                  1
   #define LULZBOT_M115_EXTRUDER_TYPE         "Universal Galaxy-Series"
@@ -859,7 +859,7 @@
   #endif
   //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
-  
+
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   //TAZ 6 Single Extruder (W)
@@ -885,7 +885,7 @@
     #define charSK175_DEFAULT_Kp "26.47"
     #define charSK175_DEFAULT_Ki "2.32"
     #define charSK175_DEFAULT_Kd "75.56"
-   
+
   // SK285 Tool head (30W)
     #define SK285_DEFAULT_Kp 26.90           //NOTE: if values are changed, both sets need to be changed.
     #define SK285_DEFAULT_Ki 2.41
@@ -910,7 +910,7 @@
     #define charM175_DEFAULT_Ki "1.94"
     #define charM175_DEFAULT_Kd "63.59"
 
-  // HS & HSPLUS Tool heads  
+  // HS & HSPLUS Tool heads
     #define HSHSPLUS_DEFAULT_Kp 37.55        //NOTE: if values are changed, both sets need to be changed.
     #define HSHSPLUS_DEFAULT_Ki 5.39
     #define HSHSPLUS_DEFAULT_Kd 65.36
@@ -933,7 +933,7 @@
     #define charMET285_DEFAULT_Kp STRINGIFY(MET285_DEFAULT_Kp)
     #define charMET285_DEFAULT_Ki STRINGIFY(MET285_DEFAULT_Ki)
     #define charMET285_DEFAULT_Kd STRINGIFY(MET285_DEFAULT_Kd)
-  
+
   // AST285 Tool head (50W)
     #define AST285_DEFAULT_Kp 14.37
     #define AST285_DEFAULT_Ki 0.86
@@ -948,48 +948,48 @@
     #define DEFAULT_Kp_LIST {  22.20,  22.20 }
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
-  
+
   #else
     // Sets default PID based on which printer/toolhead is selected
-    #if ENABLED(TAZ6) // Taz 6 Standard toolhead 
+    #if ENABLED(TAZ6) // Taz 6 Standard toolhead
       #define DEFAULT_Kp  TAZ6_STD_DEFAULT_Kp
       #define DEFAULT_Ki  TAZ6_STD_DEFAULT_Ki
       #define DEFAULT_Kd  TAZ6_STD_DEFAULT_Kd
-    
-    #elif ANY(TOOLHEAD_SL_SE_HE, LULZBOT_E3D_Titan_Aero_V6, LULZBOT_UNIVERSAL_TOOLHEAD)
+
+    #elif ANY(TOOLHEAD_SL_SE_HE, LULZBOT_E3D_Titan_Aero_V6, TOOLHEAD_Legacy_Universal)
       #define DEFAULT_Kp  SLSEHE_DEFAULT_Kp
       #define DEFAULT_Ki  SLSEHE_DEFAULT_Ki
-      #define DEFAULT_Kd  SLSEHE_DEFAULT_Kd    
-    
+      #define DEFAULT_Kd  SLSEHE_DEFAULT_Kd
+
     #elif ENABLED(TOOLHEAD_SK175)
       #define DEFAULT_Kp SK175_DEFAULT_Kp
       #define DEFAULT_Ki SK175_DEFAULT_Ki
       #define DEFAULT_Kd SK175_DEFAULT_Kd
-      
+
     #elif ENABLED(TOOLHEAD_SK285)
       #define DEFAULT_Kp SK285_DEFAULT_Kp
       #define DEFAULT_Ki SK285_DEFAULT_Ki
       #define DEFAULT_Kd SK285_DEFAULT_Kd
-    
+
     #elif ENABLED(TOOLHEAD_H175)
       #define DEFAULT_Kp H175_DEFAULT_Kp
       #define DEFAULT_Ki H175_DEFAULT_Ki
       #define DEFAULT_Kd H175_DEFAULT_Kd
-    
+
     #elif ENABLED(TOOLHEAD_M175)
       #define DEFAULT_Kp M175_DEFAULT_Kp
       #define DEFAULT_Ki M175_DEFAULT_Ki
       #define DEFAULT_Kd M175_DEFAULT_Kd
 
     #elif ANY(TOOLHEAD_HS_HSPLUS)
-      #define DEFAULT_Kp HSHSPLUS_DEFAULT_Kp 
-      #define DEFAULT_Ki HSHSPLUS_DEFAULT_Ki 
-      #define DEFAULT_Kd HSHSPLUS_DEFAULT_Kd 
-    
-    #elif ENABLED(LULZBOT_GALAXY_SERIES)
-      #define DEFAULT_Kp MET175_DEFAULT_Kp 
-      #define DEFAULT_Ki MET175_DEFAULT_Ki 
-      #define DEFAULT_Kd MET175_DEFAULT_Kd 
+      #define DEFAULT_Kp HSHSPLUS_DEFAULT_Kp
+      #define DEFAULT_Ki HSHSPLUS_DEFAULT_Ki
+      #define DEFAULT_Kd HSHSPLUS_DEFAULT_Kd
+
+    #elif ENABLED(LULZBOT_Galaxy_Series)
+      #define DEFAULT_Kp MET175_DEFAULT_Kp
+      #define DEFAULT_Ki MET175_DEFAULT_Ki
+      #define DEFAULT_Kd MET175_DEFAULT_Kd
     #endif
   #endif
 #endif // PIDTEMP
@@ -2633,10 +2633,10 @@
   #if ENABLED(MiniV2)
     #define NOZZLE_CLEAN_START_POINT {  45, 175, 0 }
     #define NOZZLE_CLEAN_END_POINT   { 115, 177, 0 }
-  #elif ANY(TAZPro, TAZProXT) && ANY(LULZBOT_UNIVERSAL_TOOLHEAD, LULZBOT_GALAXY_SERIES)
+  #elif ANY(TAZPro, TAZProXT) && ANY(TOOLHEAD_Legacy_Universal, LULZBOT_Galaxy_Series)
     #define NOZZLE_CLEAN_START_POINT { 298, 95, 1 }
     #define NOZZLE_CLEAN_END_POINT   { 300, 25, 1 }
-  #elif ANY(TAZPro, TAZProXT) && ENABLED(TOOLHEAD_Quiver_DualExtruder) 
+  #elif ANY(TAZPro, TAZProXT) && ENABLED(TOOLHEAD_Quiver_DualExtruder)
     #define NOZZLE_CLEAN_START_POINT {{ -15, 95, 1 }, { 295, 95, 1 }}
     #define NOZZLE_CLEAN_END_POINT   {{ -17, 25, 1 }, { 297, 25, 1 }}
   #else
@@ -2671,9 +2671,9 @@
     #define WIPE_SEQUENCE_COMMANDS "G28O\nM117 Wiping nozzle\nT0\nG1 X-17 Y25 Z10 F4000\nG1 Z1\nM114\nG1 Y25\nG1 Y95\nG1 Y25\nG1 Y95\nG1 Y25\nG1 Y95\nG1 Y25\nG1 Y95\nG1 Y25\nG1 Y95\nG1 Y25\nG1 Y95\nG1 Z15\nM400\nM117 Wipe Complete"
   #elif ENABLED(Workhorse)
     #define WIPE_SEQUENCE_COMMANDS "G28O\nM117 Wiping nozzle\nT0\nG1 X-17 Y25 Z10 F4000\nG1 Z1\nM114\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 Z15\nM400\nM117 Wipe Complete"
-  #elif ANY(TAZPro, TAZProXT) && ANY(LULZBOT_UNIVERSAL_TOOLHEAD, LULZBOT_GALAXY_SERIES)
+  #elif ANY(TAZPro, TAZProXT) && ANY(TOOLHEAD_Legacy_Universal, LULZBOT_Galaxy_Series)
     #define WIPE_SEQUENCE_COMMANDS "G28O\nM117 Wiping nozzle\nT0\nG1 X300 Y25 Z10 F4000\nG1 Z-1 F4000\nM114\nG1 Y25 F4000\nG1 Y95 F4000\nG1 Y25 F4000\nG1 Y95 F4000\nG1 Y25 F4000\nG1 Y95 F4000\nG1 Y25 F4000\nG1 Y95 F4000\nG1 Y25 F4000\nG1 Y95 F4000\nG1 Y25 F4000\nG1 Y95 F4000\nG1 Z15 F4000\nM400\nG0 Y-9.0 F4000\nM117 Wipe Complete"
-  #elif ANY(TAZPro, TAZProXT) && ENABLED(TOOLHEAD_Quiver_DualExtruder) 
+  #elif ANY(TAZPro, TAZProXT) && ENABLED(TOOLHEAD_Quiver_DualExtruder)
     #define WIPE_SEQUENCE_COMMANDS "G1 X-17 Y25 Z10 F4000\nT0\nG1 Z-1\nM114\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 Z15\nM400"
   #endif
 #endif
@@ -3633,12 +3633,12 @@
 //#define EDITABLE_SERVO_ANGLES
 
 // Selection of tool head
-#if NONE(LULZBOT_UNIVERSAL_TOOLHEAD, LULZBOT_GALAXY_SERIES, TOOLHEAD_SL_SE_HE, TOOLHEAD_HS_HSPLUS, TOOLHEAD_H175, TOOLHEAD_M175, TOOLHEAD_SK175, TOOLHEAD_SK285,TOOLHEAD_Quiver_DualExtruder, TOOLHEAD_Twin_Nebula_175, TOOLHEAD_Twin_Nebula_285)
+#if NONE(TOOLHEAD_Legacy_Universal, LULZBOT_Galaxy_Series, TOOLHEAD_SL_SE_HE, TOOLHEAD_HS_HSPLUS, TOOLHEAD_H175, TOOLHEAD_M175, TOOLHEAD_SK175, TOOLHEAD_SK285,TOOLHEAD_Quiver_DualExtruder, TOOLHEAD_Twin_Nebula_175, TOOLHEAD_Twin_Nebula_285)
   #error "Please select a Tool Head. See top of configuration.h for more information."
 #endif
 
 //Making sure universal_toolhead is not selected while defining specific heads
-#if ANY(TOOLHEAD_SK285, TOOLHEAD_SK175, TOOLHEAD_M175, TOOLHEAD_H175, TOOLHEAD_SL_SE_HE, TOOLHEAD_HS_HSPLUS) && ANY(LULZBOT_UNIVERSAL_TOOLHEAD, LULZBOT_GALAXY_SERIES)
+#if ANY(TOOLHEAD_SK285, TOOLHEAD_SK175, TOOLHEAD_M175, TOOLHEAD_H175, TOOLHEAD_SL_SE_HE, TOOLHEAD_HS_HSPLUS) && ANY(TOOLHEAD_Legacy_Universal, LULZBOT_Galaxy_Series)
   #error "Can not have universal tool head while defining spectific tool head"
 #endif
 
