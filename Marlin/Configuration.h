@@ -60,7 +60,8 @@
  * - Endstop configuration
  * -----------------------------CHANGES HERE
  * - Enabled BLTouch and LONG_BED in printer options above
- * - in Configuration_adv.h, SENSORLESS_HOMING changed X_STALL_SENSITIVITY and Y_STALL_SENSITIVITY from 4 -> 0 for TazPro
+ * - in Configuration_adv.h, SENSORLESS_HOMING changed Y_STALL_SENSITIVITY from 4 -> -1 for TazPro and X_STALL_SENSITIVITY from 4 -> 2
+ * - in section machine, for LULZBOT_LONG_BED changed LULZBOT_X_MAX_POS to 280 to prevent camera from crashing into side of printer
  * 
  * - LCD controller
  * - Extra features
@@ -2493,7 +2494,7 @@
     #define X_BED_SIZE        280
     #define Y_BED_SIZE        570
     // Travel limits (mm) after homing, corresponding to endstop positions.
-    #define LULZBOT_X_MAX_POS 318
+    #define LULZBOT_X_MAX_POS 280
     #define LULZBOT_X_MIN_POS -6
     #define LULZBOT_Y_MAX_POS 613
     #define LULZBOT_Y_MIN_POS -18.2//-15
