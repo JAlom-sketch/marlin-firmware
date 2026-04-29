@@ -988,7 +988,8 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       #endif
 
       #if ENABLED(GCODE_MACROS)
-        case 810: case 811: case 812: case 813: case 814:
+        case 810: M810(); break; //Custom probe and print macro
+        case 811: case 812: case 813: case 814:
         case 815: case 816: case 817: case 818: case 819:
         M810_819(); break;                                        // M810-M819: Define/execute G-code macro
       #endif
@@ -1253,3 +1254,22 @@ void GcodeSuite::process_subcommands_now(char * gcode) {
   }
 
 #endif // HOST_KEEPALIVE_FEATURE
+
+/**
+ * M810: Custom Relative 2x2 probe and print
+ */
+void GcodeSuite::M810() {
+  const float half_size = 10.0; //20mm square around the current nozzle position
+
+  const float cx = current_position.x; //current nozzle position
+  const float cy = current_position.y;
+
+  // calculate L R B and F values for G29 probing
+  const float L = cx - half_size, R = cx + half_size,
+              B = cy - half_size, F = cy + half_size;
+  
+  char cmd[64];
+  sprintf_P(cmd, PSTR("G29 L%f R%f B%f F%f"), (double)L, (double)R, (double)B, (double)F);
+
+  queue.enqueue_one_now(cmd);
+}

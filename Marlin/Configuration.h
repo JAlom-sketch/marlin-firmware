@@ -62,7 +62,14 @@
  * - Enabled BLTouch and LONG_BED in printer options above
  * - in Configuration_adv.h, SENSORLESS_HOMING changed Y_STALL_SENSITIVITY from 4 -> -1 for TazPro and X_STALL_SENSITIVITY from 4 -> 2
  * - in section machine, for LULZBOT_LONG_BED changed LULZBOT_X_MAX_POS to 280 to prevent camera from crashing into side of printer
- * 
+ * - in bed leveling section set GRID_MAX_POINTS_X and GRID_MAX_POINTS_Y to 2 for a 2x2 grid around print region
+ * - in Configuration_adv.h, uncommented #define GCODE_MACROS
+ * - in Marlin/src/gcode/gcode.h under class GcodeSuite under public, under #if ENABLED(GCODE_MACROS) added static void M810(); declaration for custom probe and print macro
+ * in Marlin/src/gcode/gcode.cpp 
+ * - added new case to switch statement in void GcodeSuit for M810 custom macro
+ * - added new GcodeSuite:M810() function to probe points relative to current nozzle position
+ * - changed NOZZLE_TO_PROBE_OFFSET from { -38, -20, -3.2 } -> { -36, -15, -3.2 }
+
  * - LCD controller
  * - Extra features
  *
@@ -2129,7 +2136,7 @@
 #elif ANY(TAZPro, TAZProXT) && DISABLED(LULZBOT_BLTouch)
   #define NOZZLE_TO_PROBE_OFFSET { 0, 0, -1.102 }
 #elif ANY(TAZPro, TAZProXT) && ENABLED(LULZBOT_BLTouch)
-  #define NOZZLE_TO_PROBE_OFFSET { -38, -20, -3.2 }
+  #define NOZZLE_TO_PROBE_OFFSET { -36, -15, -3.2 }
 #elif ANY(Sidekick_289, Sidekick_747)
   #define NOZZLE_TO_PROBE_OFFSET { -1, 50, -1.23 }
 #endif
@@ -2887,8 +2894,8 @@
 
   // Set the number of grid points per dimension.
   #if defined (LULZBOT_LONG_BED)
-    #define GRID_MAX_POINTS_X 4  //4x8 grid to account for entire long bed printable area
-    #define GRID_MAX_POINTS_Y 8
+    #define GRID_MAX_POINTS_X 2  //2x2 grid for "probe and print"
+    #define GRID_MAX_POINTS_Y 2
   #else
     #if defined (Sidekick_289)
       #define GRID_MAX_POINTS_X 3  //3x3 grid to avoid hitting the handle on the flex bed

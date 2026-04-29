@@ -1163,6 +1163,7 @@ private:
 
   #if ENABLED(GCODE_MACROS)
     static void M810_819();
+    static void M810(); //Probe and print macro
   #endif
 
   #if HAS_BED_PROBE
