@@ -22,8 +22,8 @@
 /************** Uncomment Options for Printer From Below *********************/
 //#define SHOW_TOOLHEAD_NAME
 #define LULZBOT_FILAMENT_RUNOUT
-//#define LULZBOT_BLTouch
-//#define LULZBOT_LONG_BED
+#define LULZBOT_BLTouch
+#define LULZBOT_LONG_BED
 //#define TazDualZ
 
 /**
@@ -58,6 +58,10 @@
  * - Type of temperature sensor
  * - Printer geometry
  * - Endstop configuration
+ * -----------------------------CHANGES HERE
+ * - Enabled BLTouch and LONG_BED in printer options above
+ * - in Configuration_adv.h, SENSORLESS_HOMING changed X_STALL_SENSITIVITY and Y_STALL_SENSITIVITY from 4 -> 0 for TazPro
+ * 
  * - LCD controller
  * - Extra features
  *

@@ -3574,11 +3574,11 @@
     // TMC2209: 0...255. TMC2130: -64...63
     #if ANY(TAZPro, TAZProXT)
       #if ANY(TOOLHEAD_Legacy_Universal, TOOLHEAD_Galaxy_Series)
-        #define X_STALL_SENSITIVITY  4
-        #define Y_STALL_SENSITIVITY  4
+        #define X_STALL_SENSITIVITY  0
+        #define Y_STALL_SENSITIVITY  0
       #else
-        #define X_STALL_SENSITIVITY  4
-        #define Y_STALL_SENSITIVITY  4
+        #define X_STALL_SENSITIVITY  0
+        #define Y_STALL_SENSITIVITY  0
       #endif
     #elif ANY(MiniV2)
       #define X_STALL_SENSITIVITY  3
