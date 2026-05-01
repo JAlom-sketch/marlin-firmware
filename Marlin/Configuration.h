@@ -22,7 +22,7 @@
 /************** Uncomment Options for Printer From Below *********************/
 //#define SHOW_TOOLHEAD_NAME
 #define LULZBOT_FILAMENT_RUNOUT
-#define LULZBOT_BLTouch
+//#define LULZBOT_BLTouch Already defined in platformio.ini, redefining it here throws repeated warnings during compilation.
 #define LULZBOT_LONG_BED
 //#define TazDualZ
 
@@ -66,6 +66,8 @@
  * - in Configuration_adv.h, uncommented #define GCODE_MACROS
  * - in Marlin/src/gcode/gcode.h under class GcodeSuite under public, under #if ENABLED(GCODE_MACROS) added static void M810(); declaration for custom probe and print macro
  * in Marlin/src/gcode/gcode.cpp 
+ * - Disabled TEMP_SENSOR_1 and set TEMP_SENSOR_0 to use the 25 C dummy value.
+ * - Commented out definition of LULZBOT_BLTouch, as it was already defined in platformio.ini. 
  * - added new case to switch statement in void GcodeSuit for M810 custom macro
  * - added new GcodeSuite:M810() function to probe points relative to current nozzle position
  * - changed NOZZLE_TO_PROBE_OFFSET from { -38, -20, -3.2 } -> { -36, -15, -3.2 }
@@ -926,8 +928,8 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
-#define TEMP_SENSOR_1 LULZBOT_TEMP_SENSOR_1
+#define TEMP_SENSOR_0 998
+#define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
